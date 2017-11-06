@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Messenger app</title>
+    <link rel="stylesheet" href='/style/css/bootstrap.min.css'
+  </head>
+  <body>
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header text-muted text-center">
+            Messenger app
+            </div>
+            <div class="card-body">
+              <div class="row" id="msg-container">
+                <div class="col-12">
+                  <span class="btn btn-primary p-1 px-3 text-left">Everything start with a Hi <small class="pl-5">2:45</small></span>
+                  <span class="badge badge-light align-bottom ml-2 p-1">Ramon Adan</span>
+                </div>
+                <div class="col-12">
+                  <span class="badge badge-light align-bottom ml-2 p-1 float-right">Me</span>
+                  <span class="btn btn-light p-1 px-3 text-right float-right">Everything start with a Hi <small class="pl-5">2:45</small></span>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer text-muted">
+              <form action="">
+                <div class="row no-gutters">
+                  <div class="col-md-10">
+                    <input type="text" id="input-val" class="form-control" placeholder="Type a message...">
+                  </div>
+                  <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary float-right" id="btn-submit">Send</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src='/socket.io/socket.io.js'></script>
+    <script src='/js/index.js'></script>
+  </body>
+</html>
