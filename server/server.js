@@ -4,6 +4,8 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const path = require('path');
 
+const {generateMessage} = require('./utils/messages.js');
+
 const PORT = process.env.PORT || 3000;
 const publicPath = path.join(__dirname, '../public');
 const bootstrapPath = path.join(__dirname, '../node_modules/bootstrap/dist/');
@@ -23,9 +25,15 @@ io.on('connection', (socket) => {
     console.log('User disconnected');
   });
 
-  socket.on('createMessage', (message) => {
+  // Message broadcast, user joined
+  socket.broadcast.emit('userJoined', 'An user has been joined');
+
+  socket.on('createMessage', (message, receivedCallback) => {
     console.log(message);
-  })
+    receivedCallback(generateMessage(message));
+
+    socket.broadcast.emit('newMessage', generateMessage(message));
+  });
 });
 
 http.listen(PORT, () => {
