@@ -101,3 +101,30 @@ function formatedHour(timeout) {
 
   return `${hrs}:${min}`;
 }
+
+
+// User is typing
+var timeout;
+
+var inputTeclado = document.getElementById('input-val');
+inputTeclado.addEventListener('keypress', function() {
+  socket.emit('typing', user);
+  clearTimeout(timeout);
+  timeout = setTimeout(function() {
+    socket.emit("typing", false);
+  }, 2000);
+});
+
+var typingDiv = document.getElementById('typing__element');
+typingDiv.style.display = 'none';
+
+socket.on('userTyping', function(data) {
+  if(data) {
+    typingDiv.style.display = 'block';
+    typingDiv.innerHTML = data + ' typing ...';
+    console.log('Usuario escribiendo');
+  }else{
+    typingDiv.style.display = 'none';
+    console.log('Fin');
+  }
+});

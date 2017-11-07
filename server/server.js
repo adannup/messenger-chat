@@ -34,6 +34,10 @@ io.on('connection', (socket) => {
 
     socket.broadcast.emit('newMessage', generateMessage(message));
   });
+
+  socket.on('typing', (data) => {
+    socket.broadcast.emit('userTyping', data);
+  });
 });
 
 http.listen(PORT, () => {
